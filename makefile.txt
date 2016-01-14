@@ -1,0 +1,14 @@
+PORT=11447
+CFLAGS = -DPORT=$(PORT) -g -Wall
+
+poll_server: poll_server.o lists.o
+	gcc $(CFLAGS) -o poll_server poll_server.o lists.o
+
+poll_server.o: poll_server.c lists.h
+	gcc $(CFLAGS) -c poll_server.c
+
+lists.o: lists.c lists.h
+	gcc $(CFLAGS) -c lists.c
+
+clean:
+	rm poll_server *.o
